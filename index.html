@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我是董婧仪 | 跨界运营与内容增长实践者</title>
+    <style>
+        :root {
+            --bg-color: #fbf9f5;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent-color: #b85c48;
+            --line-color: #e6e1da;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Source Han Serif CN", "Noto Serif CJK SC", Georgia, serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0 20px;
+            }
+        }
+
+        /* 顶栏 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero 首屏 */
+        .hero {
+            padding: 100px 0 80px 0;
+            max-width: 1100px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .value-proposition {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 50px;
+            font-weight: 400;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 20px;
+        }
+
+        /* Proof 数据网格 */
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            border-top: 1px solid var(--line-color);
+            padding-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .proof-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .proof-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .proof-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .proof-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        /* CTA 按钮组 */
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-main);
+            color: #ffffff;
+        }
+
+        /* Section 标题 */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 100px 0 40px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-title span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        /* Featured Works Grid 布局区 */
+        .works-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1200px;
+        }
+
+        /* 卡片基础样式 */
+        .work-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--line-color);
+            display: grid;
+            grid-template-columns: 5.5fr 4.5fr;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 500px;
+        }
+
+        .work-card:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+
+        @media (max-width: 1024px) {
+            .work-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 左侧核心：全文件平铺画廊视觉区 */
+        .work-visual-gallery {
+            padding: 20px;
+            background-color: #eae6df;
+            border-right: 1px solid var(--line-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 大图主展示位 */
+        .main-display-container {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .main-display-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        /* 底部全文件缩略图墙 */
+        .thumbnail-strip {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .thumbnail-strip::-webkit-scrollbar {
+            height: 4px;
+        }
+        .thumbnail-strip::-webkit-scrollbar-thumb {
+            background-color: var(--text-muted);
+        }
+
+        .thumb-item {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, opacity 0.2s;
+            opacity: 0.7;
+            background-color: #fff;
+            padding: 2px;
+        }
+
+        .thumb-item:hover {
+            opacity: 1;
+            border-color: var(--accent-color);
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 右侧：文字描述区 */
+        .work-content {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 600px) {
+            .work-content {
+                padding: 30px;
+            }
+        }
+
+        .metrics-banner {
+            background-color: #faf8f5;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .section-block {
+            margin-bottom: 15px;
+        }
+
+        .section-block strong {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .section-block p {
+            font-size: 1rem;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        .btn-view-case {
+            background-color: var(--text-main);
+            color: #ffffff;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            margin-top: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .btn-view-case:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* 弹窗遮罩层 (灯箱) */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 15, 15, 0.95);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            cursor: default;
+        }
+
+        .lightbox-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: rgba(255,255,255,0.7);
+            font-size: 40px;
+            font-weight: 200;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close-btn:hover {
+            color: #ffffff;
+        }
+
+        /* 全栈技能图谱样式 */
+        .skills-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .skill-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--line-color);
+            padding: 25px;
+        }
+
+        .skill-box h5 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .skill-box ul {
+            list-style: none;
+        }
+
+        .skill-box ul li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .skill-box ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* 底部 */
+        footer {
+            border-top: 1px solid var(--line-color);
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">WANG DENGDENG</div>
+        <div class="contact-info">
+            <a href="tel:18522782249">📞 185-2278-2249</a>
+            <a href="mailto:1716033365@qq.com">✉️ 1716033365@qq.com</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>我是董婧仪。<br><span>跨界运营与内容增长实践者</span></h1>
+        <div class="value-proposition">
+            建筑设计专业背景，持续探索视觉表达、内容运营、项目管理与跨专业协作的结合方式。<br><br>
+            擅长通过视觉设计提升信息传达效率，通过内容运营建立用户连接，通过表格与流程管理推动项目落地。<br><br>
+            希望用这个网站展示我在视觉、运营、管理与跨界实践中的真实能力与成长轨迹。
+        </div>
+        
+        <div class="proof-grid">
+            <div class="proof-item">
+                <h3>Top 10%</h3>
+                <h4>顶尖方案与高阶视觉工程表现</h4>
+                <p>天津仁爱学院建筑学专业，表现优异。精通SU、Blender、D5、高精度PS后期重构排版表现，独立创作5000㎡大型纪念馆及跨界数字化AR场景方案。</p>
+            </div>
+            <div class="proof-item">
+                <h3>20W+</h3>
+                <h4>小红书新媒体从0到1孵化</h4>
+                <p>独立运营垂直IP“@王灯登（景观版）”，38篇干货笔记沉淀2.2万+真实赞藏，沉淀出“盘点定位、竞品对标、爆款选题、内容创作、数据迭代”的全套运营标准SOP。</p>
+            </div>
+            <div class="proof-item">
+                <h3>95%+</h3>
+                <h4>严谨甘特图统筹与预算控制</h4>
+                <p>拥有强大的工作表格与项目多线并行业务能力。曾独立管理15+设计项目全生命周期流程，核对复杂BOM物料，精准把控 18 道核心施工工艺，预算准确率达95%以上。</p>
+            </div>
+        </div>
+
+        <div class="cta-group">
+            <a href="mailto:1716033365@qq.com" class="btn btn-primary">立即建立联系 / Contact Me</a>
+            <a href="#selected-work" class="btn btn-secondary">浏览全部作品集 / View Portfolio</a>
+        </div>
+    </section>
+
+    <div class="section-title" id="selected-work">
+        精选作品集矩阵 <span>SELECTED WORK GALLERY (点击任意图片全屏查看高清原图)</span>
+    </div>
+
+    <section class="works-grid">
+        
+        <div class="work-card">
+            <div class="work-visual-gallery">
+                <div class="main-display-container">
+                    <img src="建筑图纸/第二张.jpg" id="gallery-main-arch" alt="建筑图纸代表作">
+                </div>
+                <div class="thumbnail-strip">
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-arch', '建筑图纸/第二张.jpg')">
+                        <img src="建筑图纸/第二张.jpg" alt="Beethoven纪念馆方案">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-arch', '建筑图纸/99a5d7b1b58ca605cf198acaee149979.jpg')">
+                        <img src="建筑图纸/99a5d7b1b58ca605cf198acaee149979.jpg" alt="大三作业1">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-arch', '建筑图纸/1.jpg')">
+                        <img src="建筑图纸/1.jpg" alt="大三作业2">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-arch', '建筑图纸/微信图片_20260115203837_516_29.jpg')">
+                        <img src="建筑图纸/微信图片_20260115203837_516_29.jpg" alt="效果图1">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-arch', '建筑图纸/微信图片_20260115203838_517_29.jpg')">
+                        <img src="建筑图纸/微信图片_20260115203838_517_29.jpg" alt="效果图2">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-arch', '建筑图纸/微信图片_20260115203840_518_29.jpg')">
+                        <img src="建筑图纸/微信图片_20260115203840_518_29.jpg" alt="室内全套图纸">
+                    </div>
+                </div>
+            </div>
+            <div class="work-content">
+                <div class="metrics-banner">
+                    文件夹内容：大三高分期末作业 × 4 + 完整室内建筑图纸 × 1 + 室内效果图 × 2
+                </div>
+                <div class="section-block">
+                    <strong>CONTEXT / 背景</strong>
+                    <p>涵盖大三阶段高强度的建筑设计推演，从5000㎡大型现代主义公共建筑（如贝多芬纪念馆方案）到精细的室内施工级建筑图纸重构。</p>
+                </div>
+                <div class="section-block">
+                    <strong>OWNERSHIP / 职责</strong>
+                    <p>独立负责纪念馆立剖面精细化建模、室内施工图绘制，并利用D5/Blender输出极具商业冲击力的空间效果图表现。</p>
+                </div>
+                <div class="section-block">
+                    <strong>RESULT / 结果</strong>
+                    <p>作品兼具硬核工程制图严谨度与顶尖商业排版美感，向面试官直观呈现出极其扎实的三维建模能力、尺度把控力及高阶视觉渲染水准。</p>
+                </div>
+                <button class="btn-view-case" onclick="openFullscreenVisual('gallery-main-arch')">
+                    🔍 点击当前主图全屏高清查看
+                </button>
+            </div>
+        </div>
+
+        <div class="work-card">
+            <div class="work-visual-gallery">
+                <div class="main-display-container">
+                    <img src="新媒体/新1.png" id="gallery-main-media" alt="新媒体全栈运营导图">
+                </div>
+                <div class="thumbnail-strip">
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/新1.png')">
+                        <img src="新媒体/新1.png" alt="账号诊断思维导图">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/新2.png')">
+                        <img src="新媒体/新2.png" alt="新媒体运营思路图">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/新3.png')">
+                        <img src="新媒体/新3.png" alt="数据分析报告">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/1.png')">
+                        <img src="新媒体/1.png" alt="王灯登账号展示1">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/2.png')">
+                        <img src="新媒体/2.png" alt="王灯登账号展示2">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/微信图片_20260115202844_514_29.png')">
+                        <img src="新媒体/微信图片_20260115202844_514_29.png" alt="线下沙龙照片1">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-media', '新媒体/微信图片_20260115202845_515_29.png')">
+                        <img src="新媒体/微信图片_20260115202845_515_29.png" alt="线下沙龙照片2">
+                    </div>
+                </div>
+            </div>
+            <div class="work-content">
+                <div class="metrics-banner">
+                    文件夹内容：垂直IP账号诊断/运营导图 × 3 + 线下沙龙复盘复刻图 × 2 + 公众号爆款运营 × 2
+                </div>
+                <div class="section-block">
+                    <strong>CONTEXT / 背景</strong>
+                    <p>基于“@王灯登（景观版）”垂直自媒体IP，实现流量0到1孵化；通过线下沙龙场景闭环及方圆化多渠道矩阵内容重构。</p>
+                </div>
+                <div class="section-block">
+                    <strong>OWNERSHIP / 职责</strong>
+                    <p>独立撰写全周期深度运营复盘报告、诊断思维导图，策划组织2场线下场景沙龙，并独立负责公众号矩阵内容策划与爆款运营。</p>
+                </div>
+                <div class="section-block">
+                    <strong>RESULT / 结果</strong>
+                    <p>38篇干货笔记沉淀2.2w赞藏，向面试官完美证明其具备极其强大的用户画像拆解力、爆款内容选题力及跨多平台的数据驱动型决策素养。</p>
+                </div>
+                <button class="btn-view-case" onclick="openFullscreenVisual('gallery-main-media')">
+                    🔍 点击当前主图全屏高清查看
+                </button>
+            </div>
+        </div>
+
+        <div class="work-card">
+            <div class="work-visual-gallery">
+                <div class="main-display-container">
+                    <img src="表格/工程项目施工进度表甘特图Excel模板_1_实用电子文档_来自小红书网页版.jpg" id="gallery-main-sheet" alt="工程施工进度甘特图">
+                </div>
+                <div class="thumbnail-strip">
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-sheet', '表格/工程项目施工进度表甘特图Excel模板_1_实用电子文档_来自小红书网页版.jpg')">
+                        <img src="表格/工程项目施工进度表甘特图Excel模板_1_实用电子文档_来自小红书网页版.jpg" alt="18道施工工艺甘特图">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-sheet', '表格/屏幕截图 2026-01-27 205941.png')">
+                        <img src="表格/屏幕截图 2026-01-27 205941.png" alt="多任务项目统筹表格">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-sheet', '表格/屏幕截图 2026-06-08 215048.png')">
+                        <img src="表格/屏幕截图 2026-06-08 215048.png" alt="物料核令人清单">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-sheet', '表格/屏幕截图 2026-06-08 215057.png')">
+                        <img src="表格/屏幕截图 2026-06-08 215057.png" alt="项目交付节点治理">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-sheet', '表格/屏幕截图 2026-06-08 215107.png')">
+                        <img src="表格/屏幕截图 2026-06-08 215107.png" alt="成本预算控制看板">
+                    </div>
+                </div>
+            </div>
+            <div class="work-content">
+                <div class="metrics-banner">
+                    文件夹内容：全流程施工甘特图统筹表格 × 1 + BOM物料成本、工时控制、交付节点、抗压成绩治理体系表格 × 4
+                </div>
+                <div class="section-block">
+                    <strong>CONTEXT / 背景</strong>
+                    <p>面对多线项目重叠并行、施工工艺节点（踢脚线、石膏线打磨等18道工序）繁复 the 痛点，建立严密的数据统筹逻辑体系。</p>
+                </div>
+                <div class="section-block">
+                    <strong>OWNERSHIP / 职责</strong>
+                    <p>搭建全周期工程施工进度治理甘特图体系，精确拆解全部关键工时，主导BOM物料核令人与复杂预算成本控制表格的搭建与敏捷维护。</p>
+                </div>
+                <div class="section-block">
+                    <strong>RESULT / 结果</strong>
+                    <p>展现出卓越的数据治理表格控制力与高度理性的多任务抗压、敏捷项目管理素养。完美保证复杂项目预算准确率达95%以上，项目交付效率大幅提升20%。</p>
+                </div>
+                <button class="btn-view-case" onclick="openFullscreenVisual('gallery-main-sheet')">
+                    🔍 点击当前主图全屏高清查看
+                </button>
+            </div>
+        </div>
+
+        <div class="work-card">
+            <div class="work-visual-gallery">
+                <div class="main-display-container">
+                    <img src="IPCA和青协/2acba3eb0c24acedf17bf6540e92e7e3.jpg" id="gallery-main-extra" alt="《空境重构》数字化图纸">
+                </div>
+                <div class="thumbnail-strip">
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-extra', 'IPCA和青协/2acba3eb0c24acedf17bf6540e92e7e3.jpg')">
+                        <img src="IPCA和青协/2acba3eb0c24acedf17bf6540e92e7e3.jpg" alt="游戏化场景轴测图">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-extra', 'IPCA和青协/游戏化2.png')">
+                        <img src="IPCA和青协/游戏化2.png" alt="AR场景游戏化设计">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-extra', 'IPCA和青协/81fa5d8154e31f5b50535cb914c130eb.jpg')">
+                        <img src="IPCA和青协/81fa5d8154e31f5b50535cb914c130eb.jpg" alt="青年志愿者协会室外活动记录">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-extra', 'IPCA和青协/f2b74d52e0861cd38f5aef8b654cd7b9.jpg')">
+                        <img src="IPCA和青协/f2b74d52e0861cd38f5aef8b654cd7b9.jpg" alt="组织内部分析沙龙">
+                    </div>
+                    <div class="thumb-item" onclick="changeMainVisual('gallery-main-extra', 'IPCA和青协/表格.png')">
+                        <img src="IPCA和青协/表格.png" alt="绩点成绩单与综合组织协作">
+                    </div>
+                </div>
+            </div>
+            <div class="work-content">
+                <div class="metrics-banner">
+                    文件夹内容：IPCA数字化游戏化场景图纸 × 2 + 青年志愿者协会百人规模协作 × 2 + 抗压绩点成绩单验证 × 1
+                </div>
+                <div class="section-block">
+                    <strong>CONTEXT / 背景</strong>
+                    <p>打通物理校园空间失落空间与数字化AR孪生场景激活；同时通过大型校级公益组织（青协）实现百人品牌志愿活动的闭环落地，全面保持绩点成绩前10%的高抗压综合水准。</p>
+                </div>
+                <div class="section-block">
+                    <strong>OWNERSHIP / 职责</strong>
+                    <p>独立负责《空境重构》大型数字化场景的整体轴测图重构编排；作为青协核心统筹层，负责百人品牌活动的招募、考核、全流程沟通协作及现场抗压调度治理。</p>
+                </div>
+                <div class="section-block">
+                    <strong>RESULT / 结果</strong>
+                    <p>通过多项高精数字化游戏图纸、百人规模室外协作成套照片 以及绩点成绩单证明，自身具备及其罕见的跨专业融合、抗压大型活动落地及极强的团队统筹、领导素养表现。</p>
+                </div>
+                <button class="btn-view-case" onclick="openFullscreenVisual('gallery-main-extra')">
+                    🔍 点击当前主图全屏高清查看
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="section-title">
+        全栈技能图谱 <span>SKILLS & TOOLS</span>
+    </div>
+
+    <section class="skills-section">
+        <div class="skill-box">
+            <h5>高级视觉表现</h5>
+            <ul>
+                <li>Photoshop (高阶图像重构)</li>
+                <li>Adobe Illustrator (平面排版)</li>
+                <li>D5 Render (高拟真光影渲染)</li>
+                <li>剪映 / CapCut (视频精剪)</li>
+            </ul>
+        </div>
+        <div class="skill-box">
+            <h5>空间建模与三维</h5>
+            <ul>
+                <li>SketchUp (方案快速推演)</li>
+                <li>Blender (精细化多边形建模)</li>
+                <li>AutoCAD (标准工程图纸绘制)</li>
+                <li>AR场景游戏化设计</li>
+            </ul>
+        </div>
+        <div class="skill-box">
+            <h5>工程表格与效率</h5>
+            <ul>
+                <li>Excel 高级表格与甘特图统筹</li>
+                <li>BOM物料核令及成本精算</li>
+                <li>PowerBI 数据敏捷统筹治理看板</li>
+                <li>闭环项目高效率多任务交付表现</li>
+            </ul>
+        </div>
+        <div class="skill-box">
+            <h5>新媒体流量运营</h5>
+            <ul>
+                <li>0-1 垂直账号 IP SOP体系孵化</li>
+                <li>用户画像与对标诊断表现分析</li>
+                <li>爆款选题及传播表现文案策略</li>
+                <li>多渠道公众号内容矩阵重构</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div>© 2026 WANG DENGDENG. 温暖纸感极简美学 Editorial 设计表現。</div>
+        <div>建筑设计表现 | 数字化空间敏捷创新 | 全栈运营跨界融合素养</div>
+    </footer>
+
+
+    <div id="customLightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close-btn">&times;</span>
+        <img id="lightboxImage" src="" alt="高清放大预览" onclick="event.stopPropagation()">
+        <div class="lightbox-tip" style="position:absolute; bottom:20px; color:rgba(255,255,255,0.4); font-size:0.85rem; letter-spacing:1px; pointer-events:none;">点击空白处或 Esc 关闭</div>
+    </div>
+
+    <script>
+        // 功能1：点击缩略图切换大图显示位
+        function changeMainVisual(mainId, newSrc) {
+            const mainImg = document.getElementById(mainId);
+            if (mainImg) {
+                mainImg.src = newSrc;
+            }
+        }
+
+        // 功能2：灯箱功能 (全屏高清放大当前主展示位图片)
+        function openFullscreenVisual(mainId) {
+            const mainImg = document.getElementById(mainId);
+            if (!mainImg) return;
+            
+            const mainImgSrc = mainImg.src;
+            const lightbox = document.getElementById('customLightbox');
+            const lightboxImg = document.getElementById('lightboxImage');
+            
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = mainImgSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('customLightbox');
+            if (lightbox) {
+                lightbox.classList.remove('active'); // 成功去掉了这里原先导致冲突的重复 const 声明
+                document.body.style.overflow = ''; 
+            }
+        }
+
+        // 按 Esc 键关闭灯箱
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>
